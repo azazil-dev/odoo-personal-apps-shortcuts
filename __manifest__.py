@@ -13,7 +13,7 @@
     'author': 'Arif N Ramadhan',
     'website': 'https://www.niits.id',
     'license': 'OPL-1',
-    'price': 8.00,
+    'price': 0.00,
     'currency': 'USD',
     'depends': ['web'],
     'data': [
