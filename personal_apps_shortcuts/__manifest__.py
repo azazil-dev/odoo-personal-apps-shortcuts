@@ -36,6 +36,7 @@
     },
     'images': [
         'static/description/banner.png',
+        'static/description/icon.png',
     ],
     'application': False,
     'installable': True,
