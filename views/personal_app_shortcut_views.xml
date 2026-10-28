@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- List view — technical admin view under Settings > Technical -->
+    <record id="view_personal_app_shortcut_list" model="ir.ui.view">
+        <field name="name">personal.app.shortcut.list</field>
+        <field name="model">personal.app.shortcut</field>
+        <field name="arch" type="xml">
+            <tree string="Personal Shortcuts" default_order="sequence,id">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="url"/>
+                <field name="user_id"/>
+                <field name="new_tab"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view -->
+    <record id="view_personal_app_shortcut_form" model="ir.ui.view">
+        <field name="name">personal.app.shortcut.form</field>
+        <field name="model">personal.app.shortcut</field>
+        <field name="arch" type="xml">
+            <form string="Personal Shortcut">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Shortcut name"/></h1>
+                    </div>
+                    <group>
+                        <field name="url" placeholder="https://… or /web#action=…"/>
+                        <field name="user_id" readonly="1"/>
+                        <field name="new_tab"/>
+                        <field name="sequence"/>
+                    </group>
+                    <group string="Icon">
+                        <field name="icon" widget="image" options="{'size': [128, 128]}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_personal_app_shortcut" model="ir.actions.act_window">
+        <field name="name">Personal Shortcuts</field>
+        <field name="res_model">personal.app.shortcut</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'active_test': False}</field>
+    </record>
+
+    <!-- Menu under Settings > Technical (hidden from regular users) -->
+    <menuitem
+        id="menu_personal_app_shortcut_root"
+        name="Personal Shortcuts"
+        parent="base.menu_administration"
+        action="action_personal_app_shortcut"
+        groups="base.group_system"
+        sequence="100"/>
+</odoo>

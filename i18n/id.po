@@ -1,0 +1,91 @@
+# Indonesian translation for personal_apps_shortcuts
+# Copyright (C) 2026 PT NIITS Inovasi Teknologi
+# License: OPL-1
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2026-10-26 00:00+0000\n"
+"Last-Translator: Arif N Ramadhan <sqlrif@gmail.com>\n"
+"Language-Team: Indonesian\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "URL is required."
+msgstr "URL wajib diisi."
+
+msgid "URL scheme '%s' is not allowed."
+msgstr "Skema URL '%s' tidak diizinkan."
+
+msgid "Only http, https, and relative internal paths are accepted."
+msgstr "Hanya http, https, dan path internal relatif yang diterima."
+
+msgid "Shortcut name cannot be empty."
+msgstr "Nama pintasan tidak boleh kosong."
+
+msgid "You have reached the maximum of %d shortcuts."
+msgstr "Anda telah mencapai batas maksimum %d pintasan."
+
+msgid "The shortcut owner cannot be changed."
+msgstr "Pemilik pintasan tidak dapat diubah."
+
+msgid "Personal App Shortcut"
+msgstr "Pintasan Aplikasi Pribadi"
+
+msgid "Name"
+msgstr "Nama"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Icon"
+msgstr "Ikon"
+
+msgid "Sequence"
+msgstr "Urutan"
+
+msgid "User"
+msgstr "Pengguna"
+
+msgid "Open in New Tab"
+msgstr "Buka di Tab Baru"
+
+msgid "Active"
+msgstr "Aktif"
+
+msgid "Minimal Shortcuts Mode"
+msgstr "Mode Pintasan Minimal"
+
+msgid "Personal Shortcuts"
+msgstr "Pintasan Pribadi"
+
+msgid "Add Shortcut"
+msgstr "Tambah Pintasan"
+
+msgid "Edit Shortcut"
+msgstr "Edit Pintasan"
+
+msgid "Delete Shortcut"
+msgstr "Hapus Pintasan"
+
+msgid "Delete this shortcut?"
+msgstr "Hapus pintasan ini?"
+
+msgid "My Shortcuts"
+msgstr "Pintasan Saya"
+
+msgid "Toggle edit mode"
+msgstr "Aktifkan mode edit"
+
+msgid "Edit shortcut"
+msgstr "Edit pintasan"
+
+msgid "Delete shortcut"
+msgstr "Hapus pintasan"
+
+msgid "Add shortcut"
+msgstr "Tambah pintasan"

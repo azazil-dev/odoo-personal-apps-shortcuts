@@ -1,0 +1,236 @@
+// Part of NIITS Inovasi Teknologi. See LICENSE file for full copyright and licensing details.
+// Personal Apps Shortcuts — frontend styles
+// All classes prefixed with o_pas_ to avoid collisions.
+
+// ------------------------------------------------------------------
+// Section wrapper
+// ------------------------------------------------------------------
+.o_pas_section {
+    width: 100%;
+}
+
+// ------------------------------------------------------------------
+// Header bar
+// ------------------------------------------------------------------
+.o_pas_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 8px 2px;
+
+    .o_pas_header_label {
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--o-gray-500, #94a3b8);
+    }
+
+    .o_pas_edit_toggle {
+        color: var(--o-gray-400, #94a3b8);
+        padding: 2px 6px;
+        font-size: 0.75rem;
+
+        &:hover, &.active {
+            color: var(--o-brand-primary, #714B67);
+        }
+    }
+}
+
+// ------------------------------------------------------------------
+// Tile grid
+// ------------------------------------------------------------------
+.o_pas_tiles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 4px 8px;
+    align-items: flex-start;
+}
+
+// ------------------------------------------------------------------
+// Individual tile
+// ------------------------------------------------------------------
+.o_pas_tile {
+    position: relative;
+    width: 72px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    user-select: none;
+
+    &:hover {
+        background: var(--dropdown-link-hover-bg, rgba(0, 0, 0, 0.05));
+    }
+
+    &.o_pas_drag_over {
+        outline: 2px dashed var(--o-brand-primary, #714B67);
+        background: var(--dropdown-link-hover-bg, rgba(113, 75, 103, 0.07));
+    }
+
+    &.o_pas_dragging {
+        opacity: 0.4;
+    }
+}
+
+.o_pas_tile_link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 4px;
+    text-decoration: none !important;
+    color: inherit;
+    width: 100%;
+}
+
+// ------------------------------------------------------------------
+// Icon wrapper
+// ------------------------------------------------------------------
+.o_pas_icon_wrap {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+}
+
+.o_pas_icon_img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.o_pas_icon_fallback {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 12px;
+}
+
+// ------------------------------------------------------------------
+// Label
+// ------------------------------------------------------------------
+.o_pas_label {
+    font-size: 0.7rem;
+    text-align: center;
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 68px;
+    color: var(--body-color, #1E293B);
+}
+
+// ------------------------------------------------------------------
+// + Add tile
+// ------------------------------------------------------------------
+.o_pas_add_tile {
+    .o_pas_add_icon {
+        background: var(--o-gray-200, #e2e8f0);
+        color: var(--o-gray-500, #64748b);
+        font-size: 1rem;
+    }
+
+    &:hover .o_pas_add_icon {
+        background: var(--o-brand-primary, #714B67);
+        color: #fff;
+    }
+}
+
+// ------------------------------------------------------------------
+// Edit overlay (pencil + trash on each tile)
+// ------------------------------------------------------------------
+.o_pas_edit_overlay {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    z-index: 1;
+
+    .o_pas_btn_edit,
+    .o_pas_btn_delete {
+        width: 22px;
+        height: 22px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.65rem;
+        border-radius: 4px;
+        line-height: 1;
+    }
+
+    .o_pas_btn_edit {
+        background: var(--o-brand-primary, #714B67);
+        color: #fff;
+        border-color: transparent;
+        &:hover { background: darken(#714B67, 10%); }
+    }
+
+    .o_pas_btn_delete {
+        background: #DC2626;
+        color: #fff;
+        border-color: transparent;
+        &:hover { background: #b91c1c; }
+    }
+}
+
+// Touch: larger tap targets
+@media (pointer: coarse) {
+    .o_pas_btn_edit,
+    .o_pas_btn_delete {
+        min-width: 44px !important;
+        min-height: 44px !important;
+        font-size: 0.9rem !important;
+    }
+}
+
+// ------------------------------------------------------------------
+// Divider
+// ------------------------------------------------------------------
+.o_pas_divider {
+    border-top: 1px solid var(--border-color, #e2e8f0);
+    margin: 6px 8px;
+}
+
+// ------------------------------------------------------------------
+// Dialog
+// ------------------------------------------------------------------
+.o_pas_dialog_body {
+    padding: 4px 0;
+}
+
+.o_pas_icon_preview_wrap {
+    flex-shrink: 0;
+}
+
+.o_pas_icon_preview {
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 1px solid var(--border-color, #e2e8f0);
+}
+
+// ------------------------------------------------------------------
+// Dark mode support
+// ------------------------------------------------------------------
+.o_dark {
+    .o_pas_label { color: var(--body-color, #e2e8f0); }
+    .o_pas_add_tile .o_pas_add_icon { background: #334155; color: #94a3b8; }
+    .o_pas_divider { border-color: var(--border-color, #334155); }
+    .o_pas_header_label { color: #64748b; }
+    .o_pas_tile:hover { background: rgba(255,255,255,0.06); }
+}

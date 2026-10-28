@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="personal_apps_shortcuts.ShortcutDialog">
+        <Dialog t-props="{ title: title, size: 'md' }">
+            <t t-set-slot="default">
+                <div class="o_pas_dialog_body">
+
+                    <!-- Name -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" for="pas_name">Name <span class="text-danger">*</span></label>
+                        <input
+                            id="pas_name"
+                            class="form-control"
+                            t-att-class="{ 'is-invalid': state.errors.name }"
+                            type="text"
+                            maxlength="60"
+                            placeholder="e.g. Sales Dashboard"
+                            t-att-value="state.name"
+                            t-on-input="onChangeName"
+                            autocomplete="off"/>
+                        <t t-if="state.errors.name">
+                            <div class="invalid-feedback" t-esc="state.errors.name"/>
+                        </t>
+                    </div>
+
+                    <!-- URL -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" for="pas_url">URL <span class="text-danger">*</span></label>
+                        <input
+                            id="pas_url"
+                            class="form-control"
+                            t-att-class="{ 'is-invalid': state.errors.url }"
+                            type="text"
+                            placeholder="https://… or /web#action=…"
+                            t-att-value="state.url"
+                            t-on-input="onChangeUrl"
+                            autocomplete="off"/>
+                        <t t-if="state.errors.url">
+                            <div class="invalid-feedback" t-esc="state.errors.url"/>
+                        </t>
+                        <div class="form-text text-muted">Accepts https://, http://, or an internal /path</div>
+                    </div>
+
+                    <!-- Open in new tab -->
+                    <div class="mb-3 form-check">
+                        <input
+                            id="pas_new_tab"
+                            class="form-check-input"
+                            type="checkbox"
+                            t-att-checked="state.new_tab"
+                            t-on-change="onChangeNewTab"/>
+                        <label class="form-check-label" for="pas_new_tab">Open in new tab</label>
+                    </div>
+
+                    <!-- Icon upload -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Icon (optional)</label>
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="o_pas_icon_preview_wrap">
+                                <t t-if="state.iconPreview">
+                                    <img
+                                        class="o_pas_icon_preview"
+                                        t-att-src="state.iconPreview"
+                                        alt="Icon preview"/>
+                                </t>
+                                <t t-else="">
+                                    <div
+                                        class="o_pas_icon_fallback o_pas_icon_preview"
+                                        t-att-style="state.name ? 'background:' + tileColor(state.name) : 'background:#CBD5E1'">
+                                        <t t-if="state.name">
+                                            <t t-esc="state.name.charAt(0).toUpperCase()"/>
+                                        </t>
+                                        <t t-else="">
+                                            <i class="fa fa-image"/>
+                                        </t>
+                                    </div>
+                                </t>
+                            </div>
+                            <div class="d-flex flex-column gap-1">
+                                <button class="btn btn-sm btn-outline-secondary" type="button" t-on-click="onClickBrowseIcon">
+                                    <i class="fa fa-upload me-1"/> Browse
+                                </button>
+                                <t t-if="state.iconPreview">
+                                    <button class="btn btn-sm btn-outline-danger" type="button" t-on-click="onRemoveIcon">
+                                        <i class="fa fa-trash me-1"/> Remove
+                                    </button>
+                                </t>
+                            </div>
+                        </div>
+                        <!-- Hidden file input -->
+                        <input
+                            t-ref="fileInput"
+                            type="file"
+                            accept="image/png,image/jpeg,image/svg+xml,image/webp"
+                            class="d-none"
+                            t-on-change="onIconFileChange"/>
+                        <t t-if="state.errors.icon">
+                            <div class="text-danger small mt-1" t-esc="state.errors.icon"/>
+                        </t>
+                        <div class="form-text text-muted">PNG, JPG, SVG, or WEBP — max 1 MB, resized to 128×128.</div>
+                    </div>
+                </div>
+            </t>
+
+            <t t-set-slot="footer">
+                <div class="d-flex justify-content-between w-100">
+                    <!-- Left: Delete (edit mode only) -->
+                    <div>
+                        <t t-if="isEdit">
+                            <button class="btn btn-danger" type="button" t-on-click="onDelete">
+                                <i class="fa fa-trash me-1"/> Delete
+                            </button>
+                        </t>
+                    </div>
+                    <!-- Right: Cancel + Save -->
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-secondary" type="button" t-on-click="onCancel">
+                            Cancel
+                        </button>
+                        <button
+                            class="btn btn-primary"
+                            type="button"
+                            t-att-disabled="!isValid or state.saving"
+                            t-on-click="onSave">
+                            <t t-if="state.saving"><i class="fa fa-spinner fa-spin me-1"/></t>
+                            Save
+                        </button>
+                    </div>
+                </div>
+            </t>
+        </Dialog>
+    </t>
+
+</templates>
