@@ -2,7 +2,7 @@
 # Part of NIITS Inovasi Teknologi. See LICENSE file for full copyright and licensing details.
 {
     'name': 'Personal Apps Shortcuts',
-    'version': '18.0.1.0.0',
+    'version': '19.0.1.0.0',
     'category': 'Productivity',
     'summary': 'Private per-user shortcuts with icons and drag & drop on the Odoo apps menu',
     'description': (
