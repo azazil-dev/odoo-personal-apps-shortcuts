@@ -1,0 +1,90 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * personal_apps_shortcuts
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-26 00:00+0000\n"
+"PO-Revision-Date: 2026-10-26 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "URL is required."
+msgstr ""
+
+msgid "URL scheme '%s' is not allowed."
+msgstr ""
+
+msgid "Only http, https, and relative internal paths are accepted."
+msgstr ""
+
+msgid "Shortcut name cannot be empty."
+msgstr ""
+
+msgid "You have reached the maximum of %d shortcuts."
+msgstr ""
+
+msgid "The shortcut owner cannot be changed."
+msgstr ""
+
+msgid "Personal App Shortcut"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "URL"
+msgstr ""
+
+msgid "Icon"
+msgstr ""
+
+msgid "Sequence"
+msgstr ""
+
+msgid "User"
+msgstr ""
+
+msgid "Open in New Tab"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "Minimal Shortcuts Mode"
+msgstr ""
+
+msgid "Personal Shortcuts"
+msgstr ""
+
+msgid "Add Shortcut"
+msgstr ""
+
+msgid "Edit Shortcut"
+msgstr ""
+
+msgid "Delete Shortcut"
+msgstr ""
+
+msgid "Delete this shortcut?"
+msgstr ""
+
+msgid "My Shortcuts"
+msgstr ""
+
+msgid "Toggle edit mode"
+msgstr ""
+
+msgid "Edit shortcut"
+msgstr ""
+
+msgid "Delete shortcut"
+msgstr ""
+
+msgid "Add shortcut"
+msgstr ""

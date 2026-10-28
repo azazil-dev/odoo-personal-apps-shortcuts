@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add the Minimal Mode toggle to My Preferences (after the main preferences group) -->
+    <record id="view_users_form_shortcuts_pref" model="ir.ui.view">
+        <field name="name">res.users.form.shortcuts.pref</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form_simple_modif"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='preferences']" position="after">
+                <group name="pas_preferences" string="Shortcuts">
+                    <field name="pas_minimal_mode"
+                           string="Minimal Shortcuts Mode"
+                           widget="boolean_toggle"
+                           help="Hides the + tile and hover edit/delete controls. Manage shortcuts from the user menu instead."/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="personal_apps_shortcuts.AppPickerDialog">
+        <Dialog title="'Choose an Installed App'" size="'md'">
+            <div class="o_pas_picker_container">
+                <!-- Search bar -->
+                <div class="mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text bg-light border-end-0">
+                            <i class="fa fa-search text-muted"/>
+                        </span>
+                        <input
+                            type="text"
+                            class="form-control border-start-0"
+                            placeholder="Search installed apps…"
+                            t-att-value="state.searchQuery"
+                            t-on-input="onSearchInput"
+                            autofocus="autofocus"
+                        />
+                    </div>
+                </div>
+
+                <!-- Apps Grid -->
+                <div class="o_pas_picker_grid">
+                    <t t-foreach="filteredApps" t-as="app" t-key="app.id">
+                        <div
+                            class="o_pas_picker_item"
+                            t-att-class="{ 'opacity-50 pointer-events-none': state.submittingAppId === app.id }"
+                            t-on-click="() => this.onSelectApp(app)"
+                            role="button"
+                            tabindex="0"
+                            t-att-title="app.name"
+                        >
+                            <div class="o_pas_picker_icon_wrap">
+                                <img
+                                    class="o_pas_picker_icon"
+                                    t-att-src="app.iconUrl"
+                                    t-att-alt="app.name"
+                                />
+                            </div>
+                            <span class="o_pas_picker_name" t-esc="app.name"/>
+                        </div>
+                    </t>
+                </div>
+
+                <t t-if="filteredApps.length === 0">
+                    <div class="text-center py-4 text-muted">
+                        <i class="fa fa-folder-open-o fa-2x mb-2"/>
+                        <div>No matching installed apps found.</div>
+                    </div>
+                </t>
+            </div>
+
+            <t t-set-slot="footer">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <button
+                        type="button"
+                        class="btn btn-sm btn-link text-decoration-none"
+                        t-on-click="onOpenCustomDialog"
+                    >
+                        <i class="fa fa-external-link me-1"/> Custom URL or Link
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-sm" t-on-click="props.close">
+                        Close
+                    </button>
+                </div>
+            </t>
+        </Dialog>
+    </t>
+
+</templates>
+

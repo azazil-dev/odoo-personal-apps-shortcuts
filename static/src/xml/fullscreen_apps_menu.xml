@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <!-- Inherit stock Odoo 17 web.NavBar:
+         Replace the <t t-call="web.NavBar.AppsMenu"> call with our FullscreenAppsMenu -->
+    <t t-inherit="web.NavBar" t-inherit-mode="extension">
+        <xpath expr="//t[@t-call='web.NavBar.AppsMenu']" position="replace">
+            <FullscreenAppsMenu
+                apps="menuService.getApps()"
+                getMenuItemHref="getMenuItemHref.bind(this)"
+                onNavBarDropdownItemSelection="onNavBarDropdownItemSelection.bind(this)"
+            />
+        </xpath>
+    </t>
+
+    <!-- FullscreenAppsMenu Template -->
+    <t t-name="personal_apps_shortcuts.FullscreenAppsMenu">
+        <div class="o_pas_apps_menu_root">
+            <!-- Launcher button on navbar -->
+            <button
+                type="button"
+                class="o_pas_menu_button btn"
+                title="Apps Menu (H)"
+                t-on-click="toggle"
+            >
+                <i class="oi oi-apps fs-4" />
+            </button>
+
+            <!-- Fullscreen Overlay Container -->
+            <div t-if="state.open" class="o_pas_fullscreen_container" t-on-click.self="close">
+                <div class="o_pas_fullscreen_inner">
+                    <!-- Search Bar Header -->
+                    <div class="o_pas_search_wrapper">
+                        <div class="o_pas_search_bar">
+                            <i class="fa fa-search o_pas_search_icon"/>
+                            <input
+                                type="text"
+                                class="o_pas_search_input"
+                                placeholder="Search apps or shortcuts..."
+                                t-att-value="state.search"
+                                t-on-input="onSearchInput"
+                                t-on-keydown="onSearchKeydown"
+                            />
+                            <button
+                                t-if="state.search"
+                                type="button"
+                                class="btn btn-sm btn-link o_pas_clear_btn"
+                                t-on-click="clearSearch"
+                            >
+                                <i class="fa fa-times"/>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Shortcuts Section (hidden during search if there's text) -->
+                    <t t-if="!state.search">
+                        <ShortcutSection />
+                    </t>
+
+                    <!-- Apps Grid Header -->
+                    <div class="o_pas_grid_header">
+                        <span class="o_pas_grid_label">All Applications</span>
+                    </div>
+
+                    <!-- All Apps Grid -->
+                    <div class="o_pas_apps_grid">
+                        <t t-foreach="filteredApps" t-as="app" t-key="app.id">
+                            <a
+                                class="o_pas_app_tile"
+                                t-att-href="getAppHref(app)"
+                                t-att-title="app.name"
+                                t-on-click.prevent="(ev) => this.onAppClick(app, ev)"
+                            >
+                                <div class="o_pas_app_icon_wrap">
+                                    <img
+                                        class="o_pas_app_icon"
+                                        t-att-src="getAppIconUrl(app)"
+                                        t-att-alt="app.name"
+                                        loading="lazy"
+                                    />
+                                </div>
+                                <span class="o_pas_app_name" t-esc="app.name" />
+                            </a>
+                        </t>
+
+                        <!-- Empty state when search yields no apps -->
+                        <t t-if="filteredApps.length === 0">
+                            <div class="o_pas_no_apps">
+                                <i class="fa fa-frown-o mb-2 fs-2"/>
+                                <span>No applications found for "<t t-esc="state.search"/>"</span>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>
+

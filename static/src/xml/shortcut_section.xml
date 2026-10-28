@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <!-- ================================================================
+         ShortcutSection component template
+         Renders personal shortcut tiles above the native app grid.
+    ================================================================ -->
+    <t t-name="personal_apps_shortcuts.ShortcutSection">
+        <t t-if="showSection">
+            <div class="o_pas_section" t-ref="container">
+
+                <!-- Header: shown only when there are shortcuts -->
+                <t t-if="hasShortcuts">
+                    <div class="o_pas_header">
+                        <span class="o_pas_header_label">My Shortcuts</span>
+                        <button
+                            t-if="!minimalMode"
+                            class="o_pas_edit_toggle btn btn-sm btn-link"
+                            t-att-class="{ active: state.editMode }"
+                            t-on-click="toggleEditMode"
+                            aria-label="Toggle edit mode">
+                            <i class="fa fa-pencil"/>
+                        </button>
+                    </div>
+                </t>
+
+                <!-- Tile grid -->
+                <div class="o_pas_tiles">
+                    <t t-foreach="shortcuts" t-as="sc" t-key="sc.id">
+                        <div
+                            class="o_pas_tile o-app-menu-item"
+                            t-att-class="{
+                                o_pas_drag_over: state.dragOverId === sc.id,
+                                o_pas_dragging: state.draggingId === sc.id,
+                            }"
+                            draggable="true"
+                            t-on-dragstart="(ev) => this.onDragStart(ev, sc.id)"
+                            t-on-dragover="(ev) => this.onDragOver(ev, sc.id)"
+                            t-on-dragleave="onDragLeave"
+                            t-on-drop="(ev) => this.onDrop(ev, sc.id)"
+                            t-on-dragend="onDragEnd"
+                            t-on-touchstart="onTouchStart"
+                            t-on-touchend="onTouchEnd"
+                            t-att-title="sc.name">
+
+                            <a
+                                class="o_pas_tile_link"
+                                t-att-href="state.editMode ? '#' : sc.url"
+                                t-att-target="(!state.editMode and sc.new_tab) ? '_blank' : null"
+                                t-att-rel="sc.new_tab ? 'noopener noreferrer' : null"
+                                t-on-click="(ev) => this.onTileClick(ev, sc)">
+
+                                <div class="o_pas_icon_wrap">
+                                    <t t-if="sc.icon_url">
+                                        <img class="o_pas_icon_img"
+                                             t-att-src="sc.icon_url"
+                                             t-att-alt="sc.name"/>
+                                    </t>
+                                    <t t-else="">
+                                        <div class="o_pas_icon_fallback"
+                                             t-att-style="'background:' + tileColor(sc.name)">
+                                            <t t-esc="sc.name.charAt(0).toUpperCase()"/>
+                                        </div>
+                                    </t>
+                                </div>
+                                <span class="o_pas_label" t-esc="sc.name"/>
+                            </a>
+
+                            <!-- Edit overlay (visible in edit mode) -->
+                            <t t-if="state.editMode">
+                                <div class="o_pas_edit_overlay">
+                                    <button class="o_pas_btn_edit btn btn-sm"
+                                            t-on-click.stop="() => openEditDialog(sc)"
+                                            aria-label="Edit shortcut">
+                                        <i class="fa fa-pencil"/>
+                                    </button>
+                                    <button class="o_pas_btn_delete btn btn-sm"
+                                            t-on-click.stop="() => this.removeShortcut(sc.id)"
+                                            aria-label="Delete shortcut">
+                                        <i class="fa fa-trash"/>
+                                    </button>
+                                </div>
+                            </t>
+                        </div>
+                    </t>
+
+                    <!-- + Add tile (hidden in minimal mode) -->
+                    <t t-if="!minimalMode">
+                        <div class="o_pas_tile o_pas_add_tile o-app-menu-item"
+                             tabindex="0"
+                             t-on-click="openPicker"
+                             t-on-keydown="(ev) => ev.key === 'Enter' &amp;&amp; openPicker()"
+                             aria-label="Add shortcut">
+                            <div class="o_pas_icon_wrap">
+                                <div class="o_pas_icon_fallback o_pas_add_icon">
+                                    <i class="fa fa-plus"/>
+                                </div>
+                            </div>
+                            <span class="o_pas_label">Add</span>
+                        </div>
+                    </t>
+                </div>
+
+                <!-- Divider separates shortcuts from native apps -->
+                <t t-if="showDivider">
+                    <div class="o_pas_divider"/>
+                </t>
+            </div>
+        </t>
+    </t>
+
+</templates>
