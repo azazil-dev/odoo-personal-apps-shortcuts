@@ -34,7 +34,11 @@
             'personal_apps_shortcuts/static/src/js/home_menu_patch.js',
         ],
     },
-    'images': ['static/description/banner.png'],
+    'images': [
+        'static/description/banner.png',
+        'static/description/icon.png',
+        'static/description/main_screenshot.png',
+    ],
     'application': False,
     'installable': True,
     'auto_install': False,
